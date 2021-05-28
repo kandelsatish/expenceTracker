@@ -15,11 +15,12 @@ const expendeReducer = (state, actions) => {
 //     {id:5,expenceCat:1,cat:'Food',Amount:100},
 //     {id:6,expenceCat:1,cat:'Food',Amount:100},
 // ]
+
 initialStates=[];
 
 const addExpense = (dispatch) => {
-    return () => {
-
+    return ({name,amount,category}) => {
+       
     }
 }
 

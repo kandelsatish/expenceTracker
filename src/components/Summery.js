@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-export default function Summery() {
+export default function Summery({onModelStateChange}) {
     const income=0;
     const expense=0;
     const textColor = (income<expense ? {color:'red'} : {color:'green'});
@@ -14,8 +14,12 @@ export default function Summery() {
                 <Text style={styles.text}>Total Income - - - - - - - - - - - Rs.{income}</Text>
             </View>
             <View style={styles.buttonsView}>
-                <TouchableOpacity style={[styles.button, styles.general]}><Text>Income +</Text></TouchableOpacity>
-                <TouchableOpacity style={[styles.button, styles.general]}><Text>Expense +</Text></TouchableOpacity>
+                <TouchableOpacity style={[styles.button, styles.general]} onPress={onModelStateChange}>
+                    <Text>Income +</Text>
+                    </TouchableOpacity>
+                <TouchableOpacity style={[styles.button, styles.general]} onPress={onModelStateChange}>
+                    <Text>Expense +</Text>
+                    </TouchableOpacity>
             </View>
         </View>
     )

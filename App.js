@@ -4,7 +4,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { SpendingStack, CategoryStack, ProfileStack } from './src/navigations/navigation'
 const Tab = createMaterialBottomTabNavigator();
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import {Provider} from './src/context/expenseContext'
+import {Provider as ExpendeProvider} from './src/context/expenseContext'
+import {Provider as CategoryProvider} from './src/context/categoryContext'
 const App = () => {
   return (
     <NavigationContainer>
@@ -47,7 +48,6 @@ const App = () => {
             ),
           }}
         />
-
       </Tab.Navigator>
     </NavigationContainer>
   )
@@ -55,9 +55,11 @@ const App = () => {
 
 export default () => {
   return (
-    <Provider>
+    <ExpendeProvider>
+      <CategoryProvider>
       <App />
-    </Provider>
+      </CategoryProvider>
+    </ExpendeProvider>
   )
 
 }

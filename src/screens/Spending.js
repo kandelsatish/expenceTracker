@@ -1,32 +1,35 @@
-import React,{useContext} from 'react'
-import {FlatList,Text, View,StyleSheet} from 'react-native'
+import React, { useContext, useState } from 'react'
+import { FlatList, Text, View, StyleSheet } from 'react-native'
 import Card from '../components/Card'
+import CategoryModal from '../components/AddModal';
 import Summery from '../components/Summery';
-import {Context} from '../context/expenseContext'
+import { Context } from '../context/expenseContext'
 export default function Spending() {
-    const {state}=useContext(Context);
+    const { state } = useContext(Context);
+    const [modalVisible, setModalVisible] = useState(true)
     return (
         <>
-            <Summery/>
-            {state.length? null: (
+            <CategoryModal modalVisible={modalVisible} onModelStateChange={() => setModalVisible(!modalVisible)} />
+            <Summery onModelStateChange={() => setModalVisible(!modalVisible)} />
+            {state.length ? null : (
                 <Text style={style.message}>Nothing to show! Add income or Expences</Text>
             )}
-            <FlatList 
-            data={state}
-            keyExtractor={(item,index)=>index.toString()}
-            renderItem={(item)=>(
-                <Card height={100}/>
-            )}
+            <FlatList
+                data={state}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={(item) => (
+                    <Card height={100} />
+                )}
             />
         </>
     )
 }
 
-const style=StyleSheet.create({
-    message:{
-        alignSelf:'center',
-        marginTop:30
+const style = StyleSheet.create({
+    message: {
+        alignSelf: 'center',
+        marginTop: 30
     },
-    
+
 })
 
