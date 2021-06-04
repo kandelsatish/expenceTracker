@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-export default function PickDate({selectedDate, onDateChange, isDatePickerVisible, onVisiblityChange }) {
-  
+export default function PickDate({ selectedDate, onDateChange, isDatePickerVisible, onVisiblityChange }) {
+
+  var fullTime = new Date(selectedDate).toISOString();
+  fullTime = fullTime.split('T')[0];
+
   const showDatePicker = () => {
     onVisiblityChange(true);
   };
@@ -13,14 +16,17 @@ export default function PickDate({selectedDate, onDateChange, isDatePickerVisibl
   };
 
   const handleConfirm = (date) => {
-    onDateChange(date)
+    var time = date.getTime();
+    var fullTime = new Date(time).toISOString();
+    var date = fullTime.split('T')[0];
+    onDateChange(date);
     hideDatePicker();
   };
 
   return (
     <View>
       <TouchableOpacity onPress={showDatePicker} style={styles.date}>
-        <Text style={styles.text}>{selectedDate.toDateString()}</Text>
+        <Text style={styles.text}>{fullTime}</Text>
         <MaterialCommunityIcons name="chevron-down" size={25} color={'grey'} />
       </TouchableOpacity>
       <DateTimePickerModal

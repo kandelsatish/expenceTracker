@@ -1,18 +1,19 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
-export default function Header({onModelStateChange}) {
+export default function Header({onModelStateChange,onSave}) {
     return (
         <View style={styles.header}>
             <TouchableOpacity onPress={()=>onModelStateChange()}>
                 <Entypo name="circle-with-cross" size={30} color={'#ba6325'}/>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>onSave()}>
                 <Text style={styles.text}>Done</Text>
             </TouchableOpacity>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color:'#ba6325'
     }
-
 })
 
 

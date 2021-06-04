@@ -6,9 +6,20 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AddModal from '../components/AddModal'
 export default function Category() {
     const [index, setIndex] = useState(0);
-    const {state} = useContext(Context);
-    const [modalVisible, setModalVisible] = useState(true);
-    console.log(state);
+    const { state, deleteCategory } = useContext(Context);
+    const [showDelete, setShowDelete] = useState(false);
+    var category = [];
+    if (index === 0) {
+        category = state.filter(item => {
+            return item.index === 0;
+        });
+    }
+    if (index === 1) {
+        category = state.filter((item) => {
+            return item.index === 1;
+        })
+    }
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <>
             <AddModal
@@ -20,19 +31,27 @@ export default function Category() {
             />
             <FlatList
                 horizontal={false}
-                data={state}
+                data={category}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => {
                     return (
-                        <TouchableOpacity>
-                            <View style={styles.list}>
-                                <MaterialCommunityIcons name={item.icon} size={35} />
-                                <Text style={styles.text}>{item.name}</Text>
+                        <TouchableOpacity onLongPress={() => setShowDelete(true)} onPress={() => setShowDelete(false)} >
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'grey' }}>
+                                <View style={styles.list}>
+                                    <MaterialCommunityIcons name={item.icon} size={35} />
+                                    <Text style={styles.text}>{item.name}</Text>
+                                </View>
+                                {showDelete ? <TouchableOpacity onPress={() => deleteCategory(item.id)}>
+                                    <MaterialCommunityIcons name="delete" size={35} color={'red'} style={{ marginRight: 10 }} />
+                                </TouchableOpacity>
+                                    : null
+                                }
                             </View>
                         </TouchableOpacity>
                     )
                 }}
             />
+
         </>
     )
 }
@@ -40,8 +59,6 @@ export default function Category() {
 const styles = StyleSheet.create({
     list: {
         flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: 'grey',
         alignItems: 'center',
         padding: 5
     },

@@ -8,6 +8,17 @@ export default function Segment({ index, onTabChange }) {
                 values={["Expense", "Income"]}
                 selectedIndex={index}
                 onTabPress={(val) => onTabChange(val)}
+                activeTabStyle={{
+                    backgroundColor: '#ba6325',
+                    borderBottomWidth: 4,
+                    borderColor: '#ba6325',
+                }}
+                tabStyle={{
+                    borderColor:'#ba6325'
+                }}
+                tabTextStyle={{
+                    color:'#ba6325'
+                }}
             />
         </View>
     )
