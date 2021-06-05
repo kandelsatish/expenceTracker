@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 import PickDate from './PickDate';
 import CategoryPicker from './CategoryPicker'
-export default function From({amount, onAmountChange, selectedDate, onDateChange, selectedCategory,setSelectedCategory,index}) {
+export default function From({amount, onAmountChange, selectedDate, onDateChange, selectedCategory,setSelectedCategory,indx}) {
     const [modalVisible, setModalVisible] = useState(false);
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     return (
@@ -10,7 +10,7 @@ export default function From({amount, onAmountChange, selectedDate, onDateChange
             <CategoryPicker modalVisible={modalVisible}
                 setModalVisible={() => setModalVisible(!modalVisible)}
                 onCategorySelection={(newCategory) => setSelectedCategory(newCategory)}
-                index={index}
+                indx={indx}
             />
             <View style={style.static}>
                 <Text style={style.unit}>Date</Text>

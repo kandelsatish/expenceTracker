@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import {Context} from '../context/authenticationContext'
 export default function Account() {
+    const {signOut}=useContext(Context);
     return (
         <View style={styles.container}>
             <View style={styles.topImageView}>
@@ -10,7 +12,7 @@ export default function Account() {
                     <TouchableOpacity>
                         <MaterialCommunityIcons size={35} name="account-edit" color={'blue'} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>signOut()}>
                         <MaterialCommunityIcons size={35} name="logout" color={'blue'} />
                     </TouchableOpacity>
                 </View>

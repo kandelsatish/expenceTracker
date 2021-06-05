@@ -3,17 +3,18 @@ import {StyleSheet,Text,FlatList,TouchableOpacity,Modal,View} from 'react-native
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import {Context} from '../context/categoryContext'
 import Header from './Header';
-export default function CategoryPicker({setModalVisible,modalVisible,onCategorySelection,index}) {
+export default function CategoryPicker({setModalVisible,modalVisible,onCategorySelection,indx}) {
+    console.log(indx)
     const {state}=useContext(Context);
     var category=[];
-    if (index === 0) {
+    if (indx === 0) {
       category=state.filter(item => {
-            return item.index === 0;
+            return item.indx === 0;
         })
     }
-    if (index === 1) {
+    if (indx === 1) {
       category= state.filter((item) => {
-            return item.index === 1;
+            return item.indx === 1;
         })
     }
     return (

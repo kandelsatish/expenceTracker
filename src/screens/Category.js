@@ -5,18 +5,18 @@ import { Context } from '../context/categoryContext'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AddModal from '../components/AddModal'
 export default function Category() {
-    const [index, setIndex] = useState(0);
+    const [indx, setindx] = useState(0);
     const { state, deleteCategory } = useContext(Context);
     const [showDelete, setShowDelete] = useState(false);
     var category = [];
-    if (index === 0) {
+    if (indx === 0) {
         category = state.filter(item => {
-            return item.index === 0;
+            return item.indx === 0;
         });
     }
-    if (index === 1) {
+    if (indx === 1) {
         category = state.filter((item) => {
-            return item.index === 1;
+            return item.indx === 1;
         })
     }
     const [modalVisible, setModalVisible] = useState(false);
@@ -26,13 +26,13 @@ export default function Category() {
                 modalVisible={modalVisible}
                 onModelStateChange={() => setModalVisible(!modalVisible)}
             />
-            <Segment index={index}
-                onTabChange={(newIndex) => setIndex(newIndex)}
+            <Segment index={indx}
+                onTabChange={(newindx) => setindx(newindx)}
             />
             <FlatList
                 horizontal={false}
                 data={category}
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={(item, indx) => indx.toString()}
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity onLongPress={() => setShowDelete(true)} onPress={() => setShowDelete(false)} >

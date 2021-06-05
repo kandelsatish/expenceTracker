@@ -1,24 +1,25 @@
-import React,{useContext} from 'react'
+import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import {Context} from '../context/expenseContext'
-export default function Summery({onModelStateChange}) {
-    const {state}=useContext(Context);
-    var income = 0;
-    var expense =0;
+import { Context } from '../context/expenseContext'
+export default function Summery({ onModelStateChange }) {
 
-    state.map(item=>{
-        if(item.index===0){
-            expense+=parseInt(item.amount);
+    const { state } = useContext(Context);
+    var income = 0;
+    var expense = 0;
+
+    state.forEach(item => {
+        if (item.indx === 0) {
+            expense += parseInt(item.amount);
         }
-        if(item.index===1){
-            income+=parseInt(item.amount);
+        if (item.indx === 1) {
+            income += parseInt(item.amount);
         }
-    })
+    });
+    
     const textColor = (income < expense ? { color: 'red' } : { color: 'green' });
 
     const addExpendes = () => {
         onModelStateChange();
-
     }
 
     const addIncome = () => {
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
         height: 40,
         flex: 1,
         alignItems: 'center',
-        // paddingTop:30,
         justifyContent: 'space-around'
     }, text: {
         fontWeight: 'bold',

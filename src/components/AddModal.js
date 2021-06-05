@@ -10,11 +10,12 @@ export default function AddModal({ modalVisible, onModelStateChange }) {
   const [amount, setAmount] = useState('');
   const [selectedDate, setSelectedDate] = useState(time);
   const [selectedCategory, setSelectedCategory] = useState('Not Selected');
-  const [index, setIndex] = useState(0);
+  const [indx, setIndx] = useState(0);
+
 
   const handelSave = () => {
     if (!amount == 0 && selectedCategory !== "Not Selected") {
-      addExpense(selectedDate, selectedCategory, amount,index);
+      addExpense(selectedDate, selectedCategory, amount,indx);
       onModelStateChange();
       setSelectedCategory('Not Selected');
       setAmount('');
@@ -40,14 +41,14 @@ export default function AddModal({ modalVisible, onModelStateChange }) {
           </TouchableOpacity>
         </View>
         
-        <Segment index={index}
-          onTabChange={(newIndex) => setIndex(newIndex)}
+        <Segment indx={indx}
+          onTabChange={(newIndx) => setIndx(newIndx)}
         />
 
         <From amount={amount} onAmountChange={(newAmount) => setAmount(newAmount)}
           selectedDate={selectedDate} onDateChange={(newDate) => setSelectedDate(newDate)}
           selectedCategory={selectedCategory} setSelectedCategory={(newCategory) => setSelectedCategory(newCategory)}
-          index={index}
+          indx={indx}
         />
       </View>
     </Modal>

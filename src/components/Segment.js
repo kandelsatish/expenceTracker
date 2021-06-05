@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import SegmentedControlTab from "react-native-segmented-control-tab";
-export default function Segment({ index, onTabChange }) {
+export default function Segment({ indx, onTabChange }) {
     return (
         <View style={styles.container}>
             <SegmentedControlTab
                 values={["Expense", "Income"]}
-                selectedIndex={index}
+                selectedIndex={indx}
                 onTabPress={(val) => onTabChange(val)}
                 activeTabStyle={{
                     backgroundColor: '#ba6325',

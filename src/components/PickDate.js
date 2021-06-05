@@ -17,9 +17,9 @@ export default function PickDate({ selectedDate, onDateChange, isDatePickerVisib
 
   const handleConfirm = (date) => {
     var time = date.getTime();
-    var fullTime = new Date(time).toISOString();
-    var date = fullTime.split('T')[0];
-    onDateChange(date);
+    // var fullTime = new Date(time).toISOString();
+    // var date = fullTime.split('T')[0];
+    onDateChange(time);
     hideDatePicker();
   };
 

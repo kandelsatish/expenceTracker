@@ -1,21 +1,23 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Context as Category } from '../context/categoryContext'
-import {Context as ExpencesContext} from '../context/expenseContext'
+import { Context as ExpencesContext } from '../context/expenseContext'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-export default function Card({ height, item }) {
+export default function Card({ height,item}) {
     const { state } = useContext(Category);
-    const {deleteExpense}=useContext(ExpencesContext);
-    const selectedCategory = item.selectedCategory
-    console.log(item);
-    var date = new Date(item.selectedDate).toISOString();
+    const { deleteExpense } = useContext(ExpencesContext);
+    const selectedCategory = item.category;
+    const amount=item.amount;
+
+    var date = new Date(item.date).toISOString();
     date = date.split('T')[0];
 
-    var category = state.filter(function (category) {
-        return category.name === selectedCategory;
-    });
 
-    const color=item.index===0? 'red':'green';
+
+    var category = state.filter(singleCategory => singleCategory.name === selectedCategory);
+
+
+    const color = item.indx === 0 ? 'red' : 'green';
 
     return (
         <View style={[styles.card, { height: height }]}>
@@ -25,9 +27,9 @@ export default function Card({ height, item }) {
             <View style={{ height: '100%', flex: 1 }}>
                 <Text style={styles.text}>{category[0].name}</Text>
                 <Text style={[styles.text, { fontSize: 13, color: 'grey' }]}>{date}</Text>
-                <Text style={[styles.text,{color:color}]}>Rs.{item.amount}</Text>
+                <Text style={[styles.text, { color: color }]}>Rs.{amount}</Text>
             </View>
-            <TouchableOpacity style={styles.delete} onPress={()=>deleteExpense(item.id)}>
+            <TouchableOpacity style={styles.delete} onPress={() => deleteExpense(item.id)}>
                 <MaterialCommunityIcons name="delete" size={40} color={'red'} />
             </TouchableOpacity>
         </View>

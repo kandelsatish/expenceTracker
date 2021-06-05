@@ -2,19 +2,19 @@ import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { SpendingStack, CategoryStack, ProfileStack } from './src/navigations/navigation'
-const Tab = createMaterialBottomTabNavigator();
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Provider as ExpendeProvider } from './src/context/expenseContext'
 import { Provider as CategoryProvider } from './src/context/categoryContext'
 import { Provider as AuthProvider, Context as AuthContect } from './src/context/authenticationContext'
 import { AuthenticationStack } from './src/navigations/navigation'
+const Tab = createMaterialBottomTabNavigator();
 const App = () => {
-  const { state } = useContext(AuthContect)
-  console.log(state.username);
+  const {state}=useContext(AuthContect);
   return (
     <NavigationContainer>
-      {state.username
-        ? <Tab.Navigator
+      {!state.token
+        ? <AuthenticationStack />
+        : <Tab.Navigator
           initialRouteName="Feed"
           activeColor="#fff"
           barStyle={{ backgroundColor: '#3ddb5d' }}
@@ -31,6 +31,7 @@ const App = () => {
               ),
             }}
           />
+
           <Tab.Screen
             name="CategoryStack"
             component={CategoryStack}
@@ -54,8 +55,8 @@ const App = () => {
             }}
           />
         </Tab.Navigator>
-        : <AuthenticationStack/>}
-
+        // : <AuthenticationStack />
+        }
     </NavigationContainer>
   )
 };
