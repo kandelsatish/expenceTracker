@@ -8,12 +8,12 @@ import SignUp from '../screens/SignUp';
 const Stack = createStackNavigator();
 
 
-export const SpendingStack = ({ navigation }) => {
+export const SpendingStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="Spending" component={Spending}
-                options={({ navigation }) => ({
+                options={() => ({
                     headerStyle: { backgroundColor: '#ba6325' }
 
                 })}
@@ -22,12 +22,12 @@ export const SpendingStack = ({ navigation }) => {
     )
 }
 
-export const CategoryStack = ({ navigation }) => {
+export const CategoryStack = () => {
     return (
         <Stack.Navigator >
             <Stack.Screen name="Category"
                 component={Category}
-                options={({ navigation, route }) => ({
+                options={() => ({
                     headerStyle: { backgroundColor: '#3a73c2' },
                 })}
             />
@@ -39,13 +39,13 @@ export const AuthenticationStack = () => {
             <Stack.Navigator >
                 <Stack.Screen name="SignIn"
                     component={SignIn}
-                    options={({ navigation, route }) => ({
+                    options={() => ({
                         headerShown:false
                     })}
                 />
                 <Stack.Screen name="SignUp"
                     component={SignUp}
-                    options={({navigation,route}) => ({
+                    options={() => ({
                         headerShown:false
                     })}
                 />
@@ -53,7 +53,7 @@ export const AuthenticationStack = () => {
         )
 }
 
-export const ProfileStack = ({ navigation }) => {
+export const ProfileStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Profile" component={Account}
